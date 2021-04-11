@@ -221,6 +221,10 @@ body {
   animation: show .5s forwards;
 }
 
+.js-tabmenu li {
+  cursor: pointer;
+}
+
 @keyframes show {
   from {
     opacity: 0;
@@ -230,5 +234,40 @@ body {
   to {
     opacity: 1;
     transform: matrix3d(0, 0, 0);
+  }
+}
+
+.js .js-accordion dd {
+  display: none;
+}
+
+.js .js-accordion dt {
+  cursor: pointer;
+}
+
+.js .js-accordion dt::after {
+  content: '⬎';
+  margin-left: 30xp;
+}
+
+.js .js-accordion dt.ativo::after {
+  content: '⬏';
+  margin-left: 30xp;
+}
+
+.js .js-accordion dd.ativo {
+  display: block !important;
+  animation: slidyDown .5s forwards;
+}
+
+@keyframes slidyDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+
+  to {
+    opacity: 1;
+    max-height: 300px;
   }
 }
