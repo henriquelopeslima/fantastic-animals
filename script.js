@@ -44,12 +44,12 @@ function initAccordion() {
 }
 initAccordion();
 
-function initScrollSmooth(){
-  function scrollToSection(event){
+function initScrollSmooth() {
+  function scrollToSection(event) {
     event.preventDefault();
     const href = event.currentTarget.getAttribute("href")
     const section = document.querySelector(href)
-   
+
     section.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
@@ -61,10 +61,33 @@ function initScrollSmooth(){
     //   behavior: 'smooth'
     // })
   }
-  
+
   const linksInternos = document.querySelectorAll('.js-menu ul li a[href^="#"]')
   linksInternos.forEach((link) => {
     link.addEventListener('click', scrollToSection);
   })
 }
 initScrollSmooth();
+
+function initAnimationScroll() {
+  const sections = document.querySelectorAll('.js-scroll')
+  console.log(sections)
+  if (sections.length) {
+    const windowStartAnimation = window.innerHeight * 0.5;
+    function animationScroll() {
+      console.log('sim')
+      sections.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top
+        const isSectionVisible = sectionTop - windowStartAnimation < 0
+        if (isSectionVisible) {
+          section.classList.add('ativo')
+        } else {
+          section.classList.remove('ativo')
+        }
+      })
+    }
+    animationScroll()
+    window.addEventListener('scroll', animationScroll)
+  }
+}
+initAnimationScroll()
